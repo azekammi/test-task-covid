@@ -1,0 +1,78 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 365px;
+    height: 100vh;
+    background-color: #4985FF;
+
+    .county-photo {
+        height: 248px;
+        background: url(../../../assets/images/country-az.png) no-repeat center;
+        background-size: 100%;
+    }
+
+    .select_country {
+        display: flex;
+        height: 72px;
+        padding: 0 25px;
+        background: #ffffff url(../../../assets/icons/icon-arrow-down.svg) no-repeat center right 24px;
+        align-items: center;
+        cursor: pointer;
+
+        .icon-flag {
+            width: 32px;
+            height: 24px;
+            background: url(../../../assets/icons/flag-aze.svg) no-repeat center;
+        }
+        .name {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1;
+            color: #000000;
+        }
+    }
+
+    .statistics {
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+
+        .block {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 56px;
+            margin-bottom: 20px;
+            padding: 10px 0 0 75px;
+
+            i.icon {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 56px;
+                height: 56px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100%;
+                &.icon-user {background-image: url(../../../assets/icons/icon-user.svg);}
+                &.icon-area {background-image: url(../../../assets/icons/icon-area.svg);}
+            }
+
+            .param {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1;
+                color: #ffffff;
+            }
+
+            .value {
+                margin-bottom: 5px;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 1;
+                color: #ffffff;
+                letter-spacing: 2px;
+            }
+        }
+    }
+}

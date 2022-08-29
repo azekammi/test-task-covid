@@ -1,0 +1,10 @@
+<div class="history_view">
+  <div class="head">
+    <span>Date</span>
+    <span>Count</span>
+  </div>
+  <div class="history_view_row" *ngFor="let date of history?.dates | keyvalue">
+    <span>{{date?.key}}</span>
+    <span>{{date?.value}}</span>
+  </div>
+</div>

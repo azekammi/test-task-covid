@@ -1,0 +1,42 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <app-choose-country [countries]="countries" (close)="closePopup()" (selectedCountry)="changedCountry($event)"></app-choose-country>
+</ng-template>
+
+<div class="sidebar">
+  <div class="county-photo"></div>
+  <div class="select_country" (click)="openPopup(content)">
+    <span class="name">{{selectedCountry}}</span>
+  </div>
+  <div class="statistics" *ngIf="showStatistics">
+    <div class="block">
+      <i class="icon icon-user"></i>
+      <span class="value">{{case?.population}}</span>
+      <span class="param">Population</span>
+    </div>
+    <div class="block">
+      <i class="icon icon-area"></i>
+      <span class="value">{{case?.confirmed}}</span>
+      <span class="param">Confirmed</span>
+    </div>
+    <div class="block">
+      <i class="icon icon-user"></i>
+      <span class="value">{{case?.recovered}}</span>
+      <span class="param">Recovered</span>
+    </div>
+    <div class="block">
+      <i class="icon icon-area"></i>
+      <span class="value">{{case?.deaths}}</span>
+      <span class="param">Deaths</span>
+    </div>
+    <div class="block">
+      <i class="icon icon-user"></i>
+      <span class="value">{{vaccine?.people_vaccinated}}</span>
+      <span class="param">People Vaccinated</span>
+    </div>
+    <div class="block">
+      <i class="icon icon-user"></i>
+      <span class="value">{{vaccine?.percent}} %</span>
+      <span class="param">Vaccinated level in % of total population </span>
+    </div>
+  </div>
+</div>

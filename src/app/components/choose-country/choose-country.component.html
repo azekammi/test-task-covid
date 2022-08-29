@@ -1,0 +1,27 @@
+<div class="popup">
+  <div class="head">
+    <h2>Choose Country</h2>
+    <span class="close" #closeModal aria-label="Close" (click)="closePopup()" ></span>
+    <div class="search">
+      <input type="text" class="form-control" placeholder="Search Country" autocorrect="off" autocapitalize="off" spellcheck="off" [(ngModel)]="searchText">
+    </div>
+  </div>
+  <div class="body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of (countries ? countries : []) | searchCountry:searchText">
+          <td>{{country.name}}</td>
+          <td style="width: 100px;">
+            <button type="button" class="btn btn-success" (click)="chooseButton(country.name)">Choose</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
