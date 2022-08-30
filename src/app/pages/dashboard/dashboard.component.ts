@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
-import { tap } from "rxjs/operators";
+import { tap, map } from "rxjs/operators";
 import { Case } from "src/app/models/case";
 import { Vaccine, VaccineResponse } from "src/app/models/vaccine";
 import { CovidService } from "src/app/services/covid.service";
@@ -49,44 +49,43 @@ export class DashboardComponent implements OnInit {
 
   // Case ByCountry
   getCaseByCountry() {
-    this.loaderService.updateStatus({ status: true });
+    this.loaderService.increaseStatus()
     this.covidService
       .getCaseByCountry(this.selectedCountry)
       .pipe(takeWhileAlive(this))
       .subscribe((res) => {
         this.case = res.All;
         this.showStatistics = true;
-        this.loaderService.updateStatus({ status: false });
+        this.loaderService.decreaseStatus()
       });
   }
 
   //
   getVaccineByCountry() {
+    this.loaderService.increaseStatus()
     this.covidService
       .getVaccineByCountry(this.selectedCountry)
       .pipe(
         takeWhileAlive(this),
-        tap((res: VaccineResponse) => {
-          Object.assign(res.All, {
-            percent: res.All
-              ? (
-                  (res.All.people_partially_vaccinated * 100) /
-                  res.All.population
-                ).toFixed(2)
-              : 0,
-          });
+        map(res => {
+          if(res.All) res.All.percent = +((res.All.people_partially_vaccinated * 100) / res.All.population).toFixed(2);
+
+          return res
         })
       )
       .subscribe((res) => {
+        this.loaderService.decreaseStatus()
         this.vaccine = res.All;
       });
   }
 
   getHistory() {
+    this.loaderService.increaseStatus()
     this.covidService
       .getHistory(this.selectedCountry)
       .pipe(takeWhileAlive(this))
       .subscribe((res) => {
+        this.loaderService.decreaseStatus()
         this.history = res.All;
     
         this.onFilterItemSelect(FilterOptions.LAST_WEEK);

@@ -7,9 +7,8 @@ import { startWith } from 'rxjs/operators';
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent {
 
-  public loadingStatus$: any;
   loaderStatus: boolean = false;
 
   constructor(private loaderService: LoaderService) { 
@@ -19,15 +18,8 @@ export class LoaderComponent implements OnInit {
 
     this.loaderService.status
         .subscribe(value => {
-          this.loaderStatus = value
+          this.loaderStatus = value > 0 ? true : false
         })
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy(): void{
-    this.loadingStatus$.unsubscribe();
   }
 
 }

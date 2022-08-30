@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoaderService {
 
-  status: Subject<boolean> = new Subject<boolean>();
+  status: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor() { }
 
-  updateStatus(data: any) {
-    this.status.next(data.status)
+  increaseStatus(){
+    this.status.next(this.status.value + 1)
+  }
+
+  decreaseStatus(){
+    this.status.next(this.status.value > 0 ? this.status.value - 1 : 0)
   }
 
 }
