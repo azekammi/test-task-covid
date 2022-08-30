@@ -20,7 +20,7 @@
     "code": "AS"
   },
   {
-    "name": "AndorrA",
+    "name": "Andorra",
     "code": "AD"
   },
   {
@@ -720,7 +720,7 @@
     "code": "RO"
   },
   {
-    "name": "Russian Federation",
+    "name": "Russia",
     "code": "RU"
   },
   {
@@ -912,12 +912,12 @@
     "code": "AE"
   },
   {
-    "name": "United Kingdom",
-    "code": "GB"
+    "name": "US",
+    "code": "US"
   },
   {
-    "name": "United States",
-    "code": "US"
+    "name": "United Kingdom",
+    "code": "GB"
   },
   {
     "name": "United States Minor Outlying Islands",

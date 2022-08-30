@@ -1,2 +1,15 @@
-<app-sidebar [case]="case" [vaccine]="vaccine" [showStatistics]="showStatistics" (changedListener)="changedCountry($event)"></app-sidebar>
-<app-history [history]="history" ></app-history>
+<div class="container-fluid dashboard">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                <app-sidebar [case]="case" [vaccine]="vaccine" [showStatistics]="showStatistics" (changedListener)="changedCountry($event)"></app-sidebar>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <app-chart [chartData]="chartData" (onFilterItemSelect)="onFilterItemSelect($event)"></app-chart>
+        </div>
+        <div class="col-md-3">
+            <app-history [history]="history" ></app-history>
+        </div>
+    </div>
+</div>

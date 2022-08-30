@@ -1,12 +1,9 @@
 .history_view {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 350px;
+    width: 100%;
     height: calc(100vh - 60px);
-    margin: 30px;
+    margin: 30px 0;
     overflow: auto;
     background: #ffffff;
     border: 1px solid #DADDDF;
@@ -35,6 +32,9 @@
             font-weight: 400;
             line-height: 1;
             color: #000;
+            &.up {
+                color: #ff8700;
+            }
         }
     }
 }

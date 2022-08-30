@@ -151,6 +151,12 @@
 	text-align: center;
 }			
 
+.input-group-addon{
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
 .kpx_login .kpx_loginForm .input-group.i {
 	width: 2em;
 }

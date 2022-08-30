@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start:front": "ng serve --open --proxy-config proxy.config.json",
+    "start:back": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -19,8 +20,13 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "@ng-bootstrap/ng-bootstrap": "^8.0.4",
+    "@ng-select/ng-select": "^7.4.0",
+    "angular-highcharts": "^11.4.0",
+    "axios": "^0.27.2",
     "bootstrap": "^4.5.0",
+    "highcharts": "^10.2.0",
     "rxjs": "~6.6.0",
+    "take-while-alive": "^1.2.4",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

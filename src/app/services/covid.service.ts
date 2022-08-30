@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators'
+import { tap, catchError, map } from 'rxjs/operators'
 import { environment } from '../../environments/environment'
 import { Country } from '../models/country';
-import { HistoryResponse } from '../models/history';
+import { HistoryResponse, NewDate } from '../models/history';
 import { VaccineResponse } from '../models/vaccine';
 import { CaseResponse } from '../models/case';
 
@@ -17,35 +17,44 @@ export class CovidService {
 
   getCountries(): Observable<Country[]> {
     return this.http.get<Country[]>("../../assets/countries.json").pipe(
-      tap(data => {
-        console.log(JSON.stringify(data))
-      }),
       catchError(this.handleError)
     )
   }
 
   getCaseByCountry(country: string): Observable<CaseResponse> {
     return this.http.get<CaseResponse>(environment.URL + "cases?country=" + country).pipe(
-      tap(data => {
-        console.log(JSON.stringify(data))
-      }),
       catchError(this.handleError)
     )
   }
 
   getVaccineByCountry(country: string): Observable<VaccineResponse> {
     return this.http.get<VaccineResponse>(environment.URL + "vaccines?country=" + country).pipe(
-      tap(data => {
-        console.log(JSON.stringify(data))
-      }),
       catchError(this.handleError)
     )
   }
 
   getHistory(country: string): Observable<HistoryResponse> {
     return this.http.get<HistoryResponse>(environment.URL + "history?country=" + country + "&status=confirmed").pipe(
-      tap(data => {
-        console.log(JSON.stringify(data))
+      map((res) => {
+        res.All.newDates = [];
+        let predProp = undefined;
+
+        for(let prop of Object.keys(res.All.dates).reverse()){
+
+          let countByDay = predProp == undefined ? 0 : (res.All.dates[prop] - res.All.dates[predProp]);
+
+          let newDate: NewDate = {
+            date: prop,
+            allCount: res.All.dates[prop],
+            countByDay: countByDay
+          }
+
+          res.All.newDates.unshift(newDate)
+
+          predProp = prop;
+        }
+        
+        return res
       }),
       catchError(this.handleError)
     )

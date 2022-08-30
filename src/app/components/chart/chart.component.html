@@ -1,0 +1,11 @@
+<div class="lastsevendays">
+  <ng-select
+    [items]="filterItems"
+    bindValue="id"
+    bindLabel="label"
+    [formControl]="selectedFilterOptionId"
+    (change)="onFilterItemsChange($event)"
+  ></ng-select>
+  <hr />
+  <div [chart]="chart"></div>
+</div>

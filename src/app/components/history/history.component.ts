@@ -13,7 +13,6 @@ export class HistoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
   }
 
 }

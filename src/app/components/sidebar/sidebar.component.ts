@@ -4,15 +4,17 @@ import { CovidService } from '../../services/covid.service';
 import { Case } from '../../models/case';
 import { Country } from '../../models/country';
 import { Vaccine } from '../../models/vaccine';
+import { takeWhileAlive, AutoUnsubscribe } from 'take-while-alive';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
+@AutoUnsubscribe()
 export class SidebarComponent implements OnInit {
 
-  selectedCountry = "Azerbaijan"
+  selectedCountry = "Poland"
   countries?: Country[]
   @Input() case?: Case;
   @Input() vaccine?: Vaccine
@@ -27,11 +29,11 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     // CountryList
-    this.covidService.getCountries().subscribe(res => {
+    this.covidService.getCountries()
+    .pipe(takeWhileAlive(this))
+    .subscribe(res => {
       this.countries = res
     })
-
-    console.log(this.case, "asas")
   }
 
   // Change Country

@@ -14,4 +14,11 @@ export interface History {
     iso: number;
     capital_city: string;
     dates: { [key: string]: number };
+    newDates: NewDate[]
+}
+
+export interface NewDate{
+    date: string,
+    allCount: number,
+    countByDay: number
 }
